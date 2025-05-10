@@ -1,36 +1,44 @@
-name: Android CI
+name: Deploy to firebase
 
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: set up JDK 17
+      - name: set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: 21
-          cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Setup Gradle cache
+        uses: gradle/gradle-build-action@v2
 
-      - name: build release
+      - name: Create project files
+        run: |
+          echo "BASE_URL=${{ secrets.BASE_URL }}" > local.properties
+          echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 -d > app/google-services.json
+
+      - name: Decode Firebase service account JSON
+        run: |
+          echo "${{ secrets.CREDENTIAL_FILE_CONTENT }}" > ${HOME}/firebase-service-account.json
+
+      - name: Build release APK
         run: ./gradlew assembleDebug
 
       - name: Upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.5.1
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: ${{secrets.FIREBASE_APP_ID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          serviceCredentialsFileContent: ${{ env.HOME }}/firebase-service-account.json
           groups: tester
           file: app/build/outputs/apk/debug/app-debug.apk
