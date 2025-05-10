@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">journal</string>
+    <string name="bottom_navigation_dashboard">Dashboard</string>
+    <string name="bottom_navigation_daily_intake">Today</string>
+    <string name="bottom_navigation_food_overview">Food</string>
+    <string name="bottom_navigation_weight_management">Weight</string>
+    <string name="bottom_navigation_settings">Settings</string>
+</resources>
