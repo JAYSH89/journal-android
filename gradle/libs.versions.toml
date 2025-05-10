@@ -20,6 +20,8 @@ composeBom = "2025.04.01"
 coreKtx = "1.16.0"
 coroutines = "1.9.0-RC"
 datastore = "1.1.0"
+firebase = "33.13.0"
+googleServices = "4.4.2"
 encryptedSharedPrefs = "1.1.0-alpha07"
 espressoCore = "3.6.1"
 hilt = "2.54"
@@ -64,6 +66,7 @@ arrow-optics-ksp = { group = "io.arrow-kt", name = "arrow-optics-ksp-plugin", ve
 arrow-stack = { group = "io.arrow-kt", name = "arrow-stack", version.ref = "arrow" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 coil-compose-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
 
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "android-desugar-jdk-libs" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
@@ -162,6 +165,7 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 
 journal-android-application = { id = "journal.android.application", version = "unspecified" }
 journal-android-library = { id = "journal.android.library", version = "unspecified" }
@@ -174,4 +178,3 @@ journal-jvm-library = { id = "journal.jvm.library", version = "unspecified" }
 journal-jvm-junit5 = { id = "journal.jvm.junit5", version = "unspecified" }
 journal-android-junit5 = { id = "journal.android.junit5", version = "unspecified" }
 journal-jvm-ktor = { id = "journal.jvm.ktor", version = "unspecified" }
-

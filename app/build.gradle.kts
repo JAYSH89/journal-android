@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.journal.jvm.ktor)
     alias(libs.plugins.journal.arrow)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -48,6 +49,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.bundles.lifecycle)
+
+    // Firebase
+    implementation(libs.firebase.bom)
 
     // Hilt [https://dagger.dev/hilt/]
     implementation(libs.hilt.navigation)
