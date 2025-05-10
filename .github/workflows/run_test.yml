@@ -22,9 +22,10 @@ jobs:
       - name: Setup Gradle cache
         uses: gradle/gradle-build-action@v2
 
-      - name: Create local.properties
+      - name: Create project files
         run: |
           echo "BASE_URL=${{ secrets.BASE_URL }}" > local.properties
+          echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 -d > app/google-services.json
 
       - name: Run unit tests
         run: ./gradlew clean testDebugUnitTest
