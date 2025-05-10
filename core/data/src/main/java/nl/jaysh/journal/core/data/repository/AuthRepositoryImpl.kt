@@ -7,7 +7,9 @@ import nl.jaysh.journal.core.domain.repository.AuthRepository
 import nl.jaysh.journal.core.network.model.AuthRequest
 import nl.jaysh.journal.core.network.service.AuthService
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AuthRepositoryImpl @Inject constructor(
     private val authService: AuthService,
     @IoDispatcher private val dispatcher: CoroutineDispatcher,

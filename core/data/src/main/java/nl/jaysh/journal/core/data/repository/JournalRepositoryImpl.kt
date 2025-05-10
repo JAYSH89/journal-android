@@ -7,7 +7,9 @@ import nl.jaysh.journal.core.domain.repository.JournalRepository
 import nl.jaysh.journal.core.network.model.toWeightMeasurement
 import nl.jaysh.journal.core.network.service.JournalService
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class JournalRepositoryImpl @Inject constructor(
     private val service: JournalService,
 ) : JournalRepository {
