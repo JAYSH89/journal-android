@@ -8,4 +8,7 @@ interface JournalRepository {
     suspend fun getWeight(): Either<DataError, List<WeightMeasurement>>
     suspend fun deleteWeightMeasurement(weightMeasurement: WeightMeasurement): Either<DataError, Unit>
     suspend fun saveWeightMeasurement(weight: Double): Either<DataError, WeightMeasurement>
+    suspend fun getFood(): Either<DataError, List<String>>
+    suspend fun saveFood(): Either<DataError, Unit>
+    suspend fun deleteFood(): Either<DataError, Unit>
 }

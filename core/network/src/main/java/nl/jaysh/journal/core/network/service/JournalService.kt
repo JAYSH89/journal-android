@@ -53,4 +53,25 @@ class JournalService @Inject constructor(private val httpClient: HttpClient) {
             Left(UNKNOWN)
         }
     }
+
+    suspend fun getFood() {
+        val path = "v1/food"
+        val response = httpClient.get(path)
+
+        TODO()
+    }
+
+    suspend fun saveFood() {
+        val path = "v1/food"
+        val response = httpClient.post(path) {}
+
+        TODO()
+    }
+
+    suspend fun deleteFood(id: String) {
+        val path = "v1/food/$id"
+        val response = httpClient.delete(path)
+
+        TODO()
+    }
 }

@@ -22,9 +22,21 @@ class JournalRepositoryImpl @Inject constructor(
         .saveWeightMeasurement(weight)
         .map { measurement -> measurement.toWeightMeasurement() }
 
-    override suspend fun deleteWeightMeasurement(
-        weightMeasurement: WeightMeasurement,
-    ): Either<DataError, Unit> {
-        return service.deleteWeight(weightMeasurement.id)
+    override suspend fun deleteWeightMeasurement(weightMeasurement: WeightMeasurement) =
+        service.deleteWeight(weightMeasurement.id)
+
+    override suspend fun getFood(): Either<DataError, List<String>> {
+        service.getFood()
+        return Either.Right(emptyList())
+    }
+
+    override suspend fun saveFood(): Either<DataError, Unit> {
+        service.saveFood()
+        return Either.Right(Unit)
+    }
+
+    override suspend fun deleteFood(): Either<DataError, Unit> {
+        service.deleteFood(id = "")
+        return Either.Right(Unit)
     }
 }
