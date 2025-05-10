@@ -43,4 +43,4 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           serviceCredentialsFileContent: ${{ env.HOME }}/firebase-service-account.json
           groups: tester
-          file: app/build/outputs/apk/release/app-release.apk
+          file: app/build/outputs/apk/debug/app-debug.apk
