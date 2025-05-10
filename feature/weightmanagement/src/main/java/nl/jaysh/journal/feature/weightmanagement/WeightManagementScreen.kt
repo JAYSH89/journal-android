@@ -25,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -67,6 +68,7 @@ private fun WeightManagementScreenContent(
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
+        topBar = { TopAppBar(title = { Text(text = "Weight management") }) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
@@ -88,17 +90,8 @@ private fun WeightManagementScreenContent(
                 .fillMaxSize()
                 .padding(contentPadding)
                 .background(color = MaterialTheme.colorScheme.background),
-            contentPadding = PaddingValues(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            item {
-                Text(
-                    text = "Weight management",
-                    color = MaterialTheme.colorScheme.onBackground,
-                    style = MaterialTheme.typography.displaySmall,
-                )
-            }
-
             items(state.weightMeasurements) { measurement ->
                 Row(
                     modifier = Modifier
