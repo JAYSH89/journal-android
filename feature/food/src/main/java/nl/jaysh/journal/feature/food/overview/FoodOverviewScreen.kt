@@ -159,6 +159,7 @@ private fun FoodItem(
             value = "${food.carbs}g",
         )
     }
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -176,6 +177,7 @@ private fun FoodItem(
             value = "${food.fats}g",
         )
     }
+
     HorizontalDivider()
 }
 
