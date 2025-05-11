@@ -34,6 +34,7 @@ import nl.jaysh.journal.core.domain.model.food.Food
 import nl.jaysh.journal.core.ui.JournalTextField
 import nl.jaysh.journal.core.ui.MacroTile
 import nl.jaysh.journal.core.ui.R
+import nl.jaysh.journal.feature.food.overview.FoodOverviewEvent.OnDeleteFood
 import nl.jaysh.journal.feature.food.overview.FoodOverviewEvent.OnSearchInputChanged
 
 @Composable
@@ -97,9 +98,10 @@ private fun FoodOverviewScreenContent(
                 // TODO: 💩💩💩
                 when {
                     state.searchInput.isNotBlank() -> {
-                        if (food.name.contains(state.searchInput)) FoodItem(food)
+                        if (food.name.contains(state.searchInput)) FoodItem(food, onEvent = onEvent)
                     }
-                    else -> FoodItem(food)
+
+                    else -> FoodItem(food, onEvent = onEvent)
                 }
             }
         }
@@ -109,24 +111,35 @@ private fun FoodOverviewScreenContent(
 @Composable
 private fun FoodItem(
     food: Food,
+    onEvent: (FoodOverviewEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) = Column(
     modifier = modifier.padding(12.dp),
     verticalArrangement = Arrangement.spacedBy(8.dp),
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(
-            text = food.name,
-            style = MaterialTheme.typography.titleLarge,
-        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = food.name,
+                style = MaterialTheme.typography.titleLarge,
+            )
 
-        Text(
-            text = "(${food.amount} ${food.amountType})",
-            style = MaterialTheme.typography.bodyMedium,
-        )
+            Text(
+                text = "(${food.amount} ${food.amountType})",
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+
+        IconButton(onClick = { onEvent(OnDeleteFood(food.id.orEmpty())) }) {
+            Icon(painter = painterResource(R.drawable.ic_delete), contentDescription = null)
+        }
     }
 
     Row(

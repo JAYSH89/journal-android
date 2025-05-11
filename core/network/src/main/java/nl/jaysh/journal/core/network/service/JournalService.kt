@@ -82,6 +82,10 @@ class JournalService @Inject constructor(private val httpClient: HttpClient) {
         val path = "v1/food/$id"
         val response = httpClient.delete(path)
 
-        return Left(UNKNOWN)
+        return if (response.status.isSuccess()) {
+            Right(Unit)
+        } else {
+            Left(UNKNOWN)
+        }
     }
 }
