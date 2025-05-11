@@ -12,7 +12,6 @@ import nl.jaysh.journal.feature.food.detail.FoodDetailScreen
 import nl.jaysh.journal.feature.food.overview.FoodOverviewScreen
 import nl.jaysh.journal.feature.settings.SettingsScreen
 import nl.jaysh.journal.feature.weightmanagement.WeightManagementScreen
-import nl.jaysh.journal.navigation.Destination
 import nl.jaysh.journal.navigation.Destination.DAILY_INTAKE_DETAIL
 import nl.jaysh.journal.navigation.Destination.DAILY_INTAKE_OVERVIEW
 import nl.jaysh.journal.navigation.Destination.DASHBOARD
@@ -41,7 +40,7 @@ fun HomeNavHost(rootNavController: NavController, homeNavController: NavHostCont
         }
 
         composable(FOOD_DETAIL) {
-            FoodDetailScreen()
+            FoodDetailScreen(onSubmit = { homeNavController.navigateUp() })
         }
 
         composable(WEIGHT_MANAGEMENT) {

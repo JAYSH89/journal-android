@@ -4,12 +4,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -44,7 +46,9 @@ internal fun EmailPasswordField(
             value = email,
             label = "Email address",
             enabled = !loading,
-            icon = R.drawable.ic_email,
+            leadingIcon = {
+                Icon(painter = painterResource(R.drawable.ic_email), contentDescription = null)
+            },
             isError = isErrorEmail,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
@@ -68,16 +72,16 @@ internal fun EmailPasswordField(
             value = password,
             label = "Password",
             enabled = !loading,
-            icon = R.drawable.ic_password,
+            leadingIcon = {
+                Icon(painter = painterResource(R.drawable.ic_password), contentDescription = null)
+            },
             isError = isErrorPassword,
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Go,
             ),
-            keyboardActions = KeyboardActions(
-                onGo = { focusManager.clearFocus() },
-            ),
+            keyboardActions = KeyboardActions(onGo = { focusManager.clearFocus() }),
             onValueChange = onPasswordChange,
         )
 

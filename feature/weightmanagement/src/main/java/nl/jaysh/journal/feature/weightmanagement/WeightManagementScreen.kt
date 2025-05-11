@@ -96,7 +96,7 @@ private fun WeightManagementScreenContent(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(12.dp),
+                        .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
@@ -151,13 +151,15 @@ private fun WeightManagementBottomSheet(
             .imePadding(),
         sheetState = sheetState,
         onDismissRequest = onDismissRequest,
-        contentWindowInsets = { WindowInsets(left = 12.dp, right = 12.dp) },
+        contentWindowInsets = { WindowInsets(left = 16.dp, right = 16.dp) },
     ) {
         JournalTextField(
             value = weight.orEmpty(),
             label = "Weight",
             suffix = { Text("KG") },
-            icon = R.drawable.ic_scale,
+            leadingIcon = {
+                Icon(painter = painterResource(R.drawable.ic_scale), contentDescription = null)
+            },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Decimal,
                 imeAction = ImeAction.Next,
@@ -172,7 +174,12 @@ private fun WeightManagementBottomSheet(
                 modifier = Modifier.weight(1f),
                 value = date.orEmpty(),
                 label = "Date",
-                icon = R.drawable.ic_calendar,
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_calendar),
+                        contentDescription = null,
+                    )
+                },
                 placeholder = { Text(text = "DD/MM/YYYY") },
                 onValueChange = { date -> onEvent(OnChangeDate(date)) },
             )
@@ -181,7 +188,12 @@ private fun WeightManagementBottomSheet(
                 modifier = Modifier.weight(1f),
                 value = time.orEmpty(),
                 label = "Time",
-                icon = R.drawable.ic_calendar,
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_calendar),
+                        contentDescription = null,
+                    )
+                },
                 placeholder = { Text(text = "HH:mm") },
                 onValueChange = { time -> onEvent(OnChangeTime(time)) },
             )
