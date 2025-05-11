@@ -25,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -67,6 +68,7 @@ private fun WeightManagementScreenContent(
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
+        topBar = { TopAppBar(title = { Text(text = "Weight management") }) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
@@ -88,22 +90,13 @@ private fun WeightManagementScreenContent(
                 .fillMaxSize()
                 .padding(contentPadding)
                 .background(color = MaterialTheme.colorScheme.background),
-            contentPadding = PaddingValues(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            item {
-                Text(
-                    text = "Weight management",
-                    color = MaterialTheme.colorScheme.onBackground,
-                    style = MaterialTheme.typography.displaySmall,
-                )
-            }
-
             items(state.weightMeasurements) { measurement ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(12.dp),
+                        .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
@@ -158,13 +151,15 @@ private fun WeightManagementBottomSheet(
             .imePadding(),
         sheetState = sheetState,
         onDismissRequest = onDismissRequest,
-        contentWindowInsets = { WindowInsets(left = 12.dp, right = 12.dp) },
+        contentWindowInsets = { WindowInsets(left = 16.dp, right = 16.dp) },
     ) {
         JournalTextField(
             value = weight.orEmpty(),
             label = "Weight",
             suffix = { Text("KG") },
-            icon = R.drawable.ic_scale,
+            leadingIcon = {
+                Icon(painter = painterResource(R.drawable.ic_scale), contentDescription = null)
+            },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Decimal,
                 imeAction = ImeAction.Next,
@@ -179,7 +174,12 @@ private fun WeightManagementBottomSheet(
                 modifier = Modifier.weight(1f),
                 value = date.orEmpty(),
                 label = "Date",
-                icon = R.drawable.ic_calendar,
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_calendar),
+                        contentDescription = null,
+                    )
+                },
                 placeholder = { Text(text = "DD/MM/YYYY") },
                 onValueChange = { date -> onEvent(OnChangeDate(date)) },
             )
@@ -188,7 +188,12 @@ private fun WeightManagementBottomSheet(
                 modifier = Modifier.weight(1f),
                 value = time.orEmpty(),
                 label = "Time",
-                icon = R.drawable.ic_calendar,
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_calendar),
+                        contentDescription = null,
+                    )
+                },
                 placeholder = { Text(text = "HH:mm") },
                 onValueChange = { time -> onEvent(OnChangeTime(time)) },
             )
