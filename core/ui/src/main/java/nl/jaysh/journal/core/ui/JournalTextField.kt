@@ -1,15 +1,12 @@
 package nl.jaysh.journal.core.ui
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 
 @Composable
@@ -18,8 +15,8 @@ fun JournalTextField(
     label: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    @DrawableRes icon: Int? = null,
     placeholder: @Composable (() -> Unit)? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     prefix: @Composable (() -> Unit)? = null,
     suffix: @Composable (() -> Unit)? = null,
@@ -38,7 +35,7 @@ fun JournalTextField(
     placeholder = placeholder,
     trailingIcon = trailingIcon,
     visualTransformation = visualTransformation,
-    leadingIcon = { icon?.let { Icon(painterResource(it), null) } },
+    leadingIcon = leadingIcon,
     prefix = prefix,
     suffix = suffix,
     isError = isError,

@@ -5,9 +5,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -26,25 +29,27 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SettingsContent(
     state: SettingsState,
     onEvent: (SettingsEvent) -> Unit,
-) = Column(
-    modifier = Modifier
-        .fillMaxSize()
-        .background(color = MaterialTheme.colorScheme.background),
-    horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center,
 ) {
-    OutlinedButton(
-        onClick = { onEvent(SettingsEvent.OnClick) },
-    ) {
-        Text(
-            text = "Settings",
-            color = MaterialTheme.colorScheme.onBackground,
-            style = MaterialTheme.typography.displayMedium,
-        )
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text(text = "Settings") })
+        },
+    ) { contentPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(contentPadding)
+                .background(color = MaterialTheme.colorScheme.background),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+
+        }
     }
 }
 

@@ -36,11 +36,11 @@ fun HomeNavHost(rootNavController: NavController, homeNavController: NavHostCont
         }
 
         composable(FOOD_OVERVIEW) {
-            FoodOverviewScreen()
+            FoodOverviewScreen(onClickAdd = { homeNavController.navigate(FOOD_DETAIL) })
         }
 
         composable(FOOD_DETAIL) {
-            FoodDetailScreen()
+            FoodDetailScreen(onSubmit = { homeNavController.navigateUp() })
         }
 
         composable(WEIGHT_MANAGEMENT) {
